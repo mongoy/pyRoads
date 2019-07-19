@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 class="mb-3">Автомобильная дорога: {{ road.nroad }}</h1>
+        <div class="card mb-1">
+            <p class="card-header">Район : {{ road.nregion }}</p>
+            <p class="card-header">Тип дороги : {{ road.troad }}</p>
+            <p class="card-header">Протяженность : {{ road.lroad }} км </p>
+        </div><br><hr>
+    <div class="card-header">
+        <a href="{% url 'road-list' %}" class="btn btn-outline-success my-1 my-sm-0">Перечень дорог</a>
+    </div>
+{% endblock content %}
