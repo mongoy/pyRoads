@@ -58,6 +58,17 @@ class RoadDetail(DetailView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
+            @staticmethod
+            def get(request):
+                info = Road.objects.all()
+                #qs = Road.objects.all()
+                d_today = datetime.date.today()
+                am_month = ammort(info.period, info.broad)
+                summ_ost = info.oroad - am_month * d_today.month
+                info['oroad__sum'] = summ_ost
+                print(summ_ost)
+                info['date__today'] = d_today
+                return render(request, 'road_detail.html', context=info)
             return Road.objects.all()
         else:
             return Road.objects.none()
