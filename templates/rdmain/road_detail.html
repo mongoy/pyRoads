@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h1 class="mb-3">Автомобильная дорога: {{ oroad__sum }}</h1>
+    <h1 class="mb-3">Автомобильная дорога: &nbsp; {{ road.nroad }}</h1>
         <div class="card mb-1">
-            <p class="card-header">Район : {{ road.nregion }}</p>
-            <p class="card-header">Тип дороги : {{ road.troad }}</p>
-            <p class="card-header">Протяженность : {{ road.lroad }} км </p>
+            <p class="card-header"><strong>Район : &nbsp; {{ road.nregion }}</strong></p>
+            <p class="card-header"><strong>Тип дороги : &nbsp; {{ road.troad }}</strong></p>
+            <p class="card-header"><strong>Протяженность : &nbsp; {{ road.lroad }} км </strong></p>
+            <p class="card-header"><strong>Стоимость на {{ d_today }} : </strong></p>
+            <p class="card-header">&nbsp;&nbsp;&nbsp; Балансовая : {{ road.broad }} руб. </p>
+            <p class="card-header">&nbsp;&nbsp;&nbsp; Остаточная : {{ summ_ost }} руб. </p>
         </div><br><hr>
     <div class="card-header">
         <a href="{% url 'road-list' %}" class="btn btn-outline-success my-1 my-sm-0">Перечень дорог</a>

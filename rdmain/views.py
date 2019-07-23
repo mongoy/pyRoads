@@ -53,25 +53,43 @@ class RoadListView(ListView):
 class RoadDetail(DetailView):
     """Информация о дороге"""
 
-    # model = Road
+    model = Road
     # template_name = 'rdmain/road_detail.html'
 
-    def get_queryset(self):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        d_today = datetime.date.today()
+        context['d_today'] = d_today
+        period = kwargs['object'].period
+        broad = kwargs['object'].broad
+        oroad = kwargs['object'].oroad
+        am_month = ammort(period, broad)
+        summ_ost = oroad - am_month * d_today.month
+        context['summ_ost'] = summ_ost
+
         if self.request.user.is_authenticated:
-            @staticmethod
-            def get(request):
-                info = Road.objects.all()
-                #qs = Road.objects.all()
-                d_today = datetime.date.today()
-                am_month = ammort(info.period, info.broad)
-                summ_ost = info.oroad - am_month * d_today.month
-                info['oroad__sum'] = summ_ost
-                print(summ_ost)
-                info['date__today'] = d_today
-                return render(request, 'road_detail.html', context=info)
-            return Road.objects.all()
+            return context
         else:
             return Road.objects.none()
+
+
+
+    # def get_queryset(self):
+    #     if self.request.user.is_authenticated:
+    #         @staticmethod
+    #         def get(request):
+    #             info = Road.objects.all()
+    #             #qs = Road.objects.all()
+    #             d_today = datetime.date.today()
+    #             am_month = ammort(info.period, info.broad)
+    #             summ_ost = info.oroad - am_month * d_today.month
+    #             info['oroad__sum'] = summ_ost
+    #             print(summ_ost)
+    #             info['date__today'] = d_today
+    #             return render(request, 'road_detail.html', context=info)
+    #         return Road.objects.all()
+    #     else:
+    #         return Road.objects.none()
 
 
 class RoadUpdateView(UpdateView):
