@@ -11,7 +11,7 @@ class TypeRoad(models.Model):
     class Meta:
         verbose_name = "Тип дороги"
         verbose_name_plural = "Типы дорог"
-        ordering = ('name',)#сортировка
+        ordering = ('name',)  # сортировка
 
 
 class TypeElRoad(models.Model):
@@ -24,7 +24,7 @@ class TypeElRoad(models.Model):
     class Meta:
         verbose_name = "Тип элемента дороги"
         verbose_name_plural = "Типы элементов дорог"
-        ordering = ('name',)#сортировка
+        ordering = ('name',)  # сортировка
 
 
 class Material(models.Model):
@@ -37,7 +37,7 @@ class Material(models.Model):
     class Meta:
         verbose_name = "Материал"
         verbose_name_plural = "Материалы"
-        ordering = ('name',)#сортировка
+        ordering = ('name',)  # сортировка
 
 
 class Region(models.Model):
@@ -50,7 +50,7 @@ class Region(models.Model):
     class Meta:
         verbose_name = "Район"
         verbose_name_plural = "Районы"
-        ordering = ('name',)#сортировка
+        ordering = ('name',)  # сортировка
 
 
 class Road(models.Model):
@@ -82,7 +82,8 @@ class Road(models.Model):
 
 class ElRoad(models.Model):
     """Список элементов дорог"""
-    nelroad = models.ForeignKey(TypeElRoad, on_delete=models.DO_NOTHING, verbose_name='Тип элемента дороги', default='-')
+    nelroad = models.ForeignKey(TypeElRoad, on_delete=models.DO_NOTHING, verbose_name='Тип элемента дороги',
+                                default='-')
     elmat = models.ForeignKey(Material, on_delete=models.DO_NOTHING, default='-')
     nroad = models.ForeignKey(Road, on_delete=models.DO_NOTHING, verbose_name='Наименование дороги', default='-')
     nregion = models.ForeignKey(Region, on_delete=models.DO_NOTHING, verbose_name='Район', default='г.Чита')

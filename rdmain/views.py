@@ -8,7 +8,7 @@ from django.views.generic import TemplateView, ListView, DetailView, UpdateView,
 from django.views.generic.base import View
 
 from .forms import RoadForm, RoadCreatForm
-from .models import Road
+from .models import Road, ElRoad
 
 
 class RoadInfo(TemplateView):
@@ -66,7 +66,7 @@ class RoadDetail(DetailView):
         am_month = ammort(period, broad)
         summ_ost = oroad - am_month * d_today.month
         context['summ_ost'] = summ_ost
-
+        # context['elements'] = ElRoad.objects.filter(nroad=Road).filter(nregion=Road)
         if self.request.user.is_authenticated:
             return context
         else:

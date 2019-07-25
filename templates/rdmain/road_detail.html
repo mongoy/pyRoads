@@ -11,6 +11,10 @@
             <p class="card-header">&nbsp;&nbsp;&nbsp; Остаточная : {{ summ_ost }} руб. </p>
         </div><br><hr>
     <div class="card-header">
-        <a href="{% url 'road-list' %}" class="btn btn-outline-success my-1 my-sm-0">Перечень дорог</a>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-2"><a href="#" class="btn btn-sm btn-outline-info my-2 my-sm-0" aria-disabled="true">Перечень элементов дороги</a></div>
+            <div class="col-3"><a href="{% url 'road-list' %}" class="btn btn-outline-success my-1 my-sm-0" aria-disabled="true">Перечень дорог</a></div>
+        </div>
     </div>
 {% endblock content %}
